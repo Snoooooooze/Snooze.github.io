@@ -4,73 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Your Name – UX Designer</title>
+  <meta name="description" content="UX designer focused on research-led product design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root { --paper:#f2f5f8; --ink:#1b2430; --muted:#55606e; --accent:#2748e8; --mark:#ffe066; --line:#cfd7e0; }
-    @media (prefers-color-scheme: dark) {
-      :root { --paper:#131a23; --ink:#e9eef4; --muted:#a3aebb; --accent:#8fa6ff; --line:#2b3644; }
+    :root {
+      --paper: #f0f0f0;
+      --ink: #1e1e1e;
+      --muted: #6b6b6b;
+      --pink: #d9008d;
+      --block: #dcdcde;
+      --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
     }
     * { box-sizing: border-box; }
-    body { margin:0; background:var(--paper); color:var(--ink); font:1.0625rem/1.6 system-ui,sans-serif; }
-    a { color:var(--accent); }
-    a:focus-visible { outline:3px solid var(--mark); outline-offset:3px; }
-    header, main, footer { max-width:44rem; margin:0 auto; padding:0 1.25rem; }
-    header { display:flex; justify-content:space-between; flex-wrap:wrap; gap:.75rem; padding-top:1.5rem; padding-bottom:1.5rem; }
-    header nav a { margin-left:1.25rem; color:var(--ink); }
-    h1, h2, h3 { font-family:Georgia,serif; line-height:1.2; }
-    h1 { font-size:clamp(2rem,6vw,3.25rem); margin:3rem 0 1rem; background:linear-gradient(transparent 62%,var(--mark) 62%); display:inline; }
-    .lead { color:var(--muted); max-width:34rem; margin:1.5rem 0 3rem; }
-    section { padding:2rem 0; border-top:1px solid var(--line); }
-    .case { padding:1.25rem 0; }
-    .case + .case { border-top:1px solid var(--line); }
-   .case h3 a { color:var(--ink); }    dl { display:grid; grid-template-columns:6rem 1fr; gap:.35rem 1rem; margin:0; }
-    dt { color:var(--muted); font-weight:600; }
-    dd { margin:0; }
-    @media (max-width:30rem) { dl { grid-template-columns:1fr; gap:0; } dd { margin-bottom:.6rem; } }
-    footer { padding-top:2rem; padding-bottom:3rem; color:var(--muted); font-size:.9rem; }
-  </style>
-</head>
-<body>
-  <header>
-    <strong>Your Name</strong>
-    <nav><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-  </header>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 300 1.0625rem/1.6 var(--sans);
+      overflow-x: hidden;
+    }
+    a { color: var(--pink); }
+    a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
 
-  <main>
-    <h1>I design products people can use without thinking about them.</h1>
-    <p class="lead">UX designer with a background in research. I turn messy problems into clear flows, and test them with real people before anything ships.</p>
+    /* Header */
+    .site-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-top: 2rem; padding-bottom: 2rem; }
+    .logo { font-size: 1.35rem; font-weight: 400; color: var(--ink); text-decoration: none; }
+    .logo span { color: var(--pink); }
+    nav { display: flex; gap: 2rem; font-family: var(--mono); font-size: 0.95rem; }
+    nav a { text-decoration: none; padding-bottom: 0.25rem; border-bottom: 2px solid transparent; }
+    nav a[aria-current="page"] { font-weight: 600; border-bottom-color: var(--pink); }
+    nav a:hover { border-bottom-color: var(--pink); }
 
-    <section id="work">
-      <h2>Selected work</h2>
-
-      <article class="case">
-   <h3><a href="case-study-checkout.html">Redesigning checkout for a food delivery app</a></h3>        <dl>
-          <dt>Problem</dt><dd>38% of users abandoned checkout at the payment step.</dd>
-          <dt>Role</dt><dd>Lead designer, 3-person team, 8 weeks.</dd>
-          <dt>Outcome</dt><dd>Abandonment dropped to 24% after two rounds of usability testing.</dd>
-        </dl>
-      </article>
-
-      <article class="case">
-        <h3>A booking flow for a community health clinic</h3>
-        <dl>
-          <dt>Problem</dt><dd>Patients called the front desk because online booking was confusing.</dd>
-          <dt>Role</dt><dd>Researcher and designer, solo project.</dd>
-          <dt>Outcome</dt><dd>Phone bookings fell by a third in the first month.</dd>
-        </dl>
-      </article>
-    </section>
-
-    <section id="about">
-      <h2>About</h2>
-      <p>Write two or three short paragraphs: how you got into UX, how you work, and what kind of team you want to join.</p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email me at <a href="mailto:you@example.com">you@example.com</a>.</p>
-    </section>
-  </main>
-
-  <footer><p>&copy; 2026 Your Name</p></footer>
-</body>
-</html>
+    /* Hero */
+    .hero { padding: 6rem 0 5rem; }
+    .hero h1 { font-size: clamp(2.25rem, 6vw, 4rem); font-weight: 400; line-height: 1.15; max-width: 16em; margin: 0 0 1.75rem; letter-spacing: -0.01em; }
+    .hero h1 em { font-style: normal; color: var(--pink); }
+    .hero p { color: var(--muted); font-size: 1.15rem; margin: 0; }
+    .hero p strong { font-weight: 400; color: var(--pink); }
