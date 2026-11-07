@@ -4,46 +4,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Your Name – UX Designer</title>
-  <meta name="description" content="UX designer focused on research-led product design.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --paper: #f0f0f0;
-      --ink: #1e1e1e;
-      --muted: #6b6b6b;
-      --pink: #d9008d;
-      --block: #dcdcde;
-      --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-      --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
       margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font: 300 1.0625rem/1.6 var(--sans);
-      overflow-x: hidden;
+      background: #f0f0f0;
+      color: #1e1e1e;
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
     }
-    a { color: var(--pink); }
-    a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    a { color: #d9008d; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
 
-    /* Header */
-    .site-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-top: 2rem; padding-bottom: 2rem; }
-    .logo { font-size: 1.35rem; font-weight: 400; color: var(--ink); text-decoration: none; }
-    .logo span { color: var(--pink); }
-    nav { display: flex; gap: 2rem; font-family: var(--mono); font-size: 0.95rem; }
-    nav a { text-decoration: none; padding-bottom: 0.25rem; border-bottom: 2px solid transparent; }
-    nav a[aria-current="page"] { font-weight: 600; border-bottom-color: var(--pink); }
-    nav a:hover { border-bottom-color: var(--pink); }
+    .site-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 32px 0; }
+    .logo { font-size: 22px; color: #1e1e1e; text-decoration: none; }
+    .logo span { color: #d9008d; }
+    nav a { font-family: Menlo, Consolas, monospace; font-size: 15px; text-decoration: none; margin-left: 28px; }
+    nav a:hover { text-decoration: underline; }
 
-    /* Hero */
-    .hero { padding: 6rem 0 5rem; }
-    .hero h1 { font-size: clamp(2.25rem, 6vw, 4rem); font-weight: 400; line-height: 1.15; max-width: 16em; margin: 0 0 1.75rem; letter-spacing: -0.01em; }
-    .hero h1 em { font-style: normal; color: var(--pink); }
-    .hero p { color: var(--muted); font-size: 1.15rem; margin: 0; }
-    .hero p strong { font-weight: 400; color: var(--pink); }
+    .hero { padding: 80px 0 60px; }
+    .hero h1 { font-size: 52px; font-weight: 400; line-height: 1.15; max-width: 760px; margin: 0 0 24px; }
+    .hero h1 em { font-style: normal; color: #d9008d; }
+    .hero p { color: #6b6b6b; font-size: 19px; margin: 0; }
+    .hero p strong { font-weight: 400; color: #d9008d; }
+
+    .links { border-top: 2px solid #d9008d; padding-top: 16px; font-family: Menlo, Consolas, monospace; font-size: 15px; }
+    .links a { margin-right: 24px; }
+
+    #work { padding: 60px 0; }
+    .grid { display: flex; flex-wrap: wrap; gap: 48px; }
+    .card { flex: 1 1 300px; color: #1e1e1e; text-decoration: none; }
+    .thumb { background: #dcdcde; height: 240px; display: flex; align-items: center; justify-content: center; color: #6b6b6b; font-family: Menlo, Consolas, monospace; font-size: 14px; margin-bottom: 16px; }
+    .card h2 { font-size: 22px; font-weight: 500; margin: 0 0 6px; }
+    .card p { margin: 0; color: #6b6b6b; }
+    .card:hover h2 { color: #d9008d; }
+
+    .text-section { padding: 40px 0; border-top: 1px solid #d6d6d6; }
+    .text-section h2 { font-family: Menlo, Consolas, monospace; font-size: 15px; margin: 0 0 12px; }
+    .text-section p { max-width: 600px; }
+
+    .site-footer { padding: 32px 0 48px; color: #6b6b6b; font-size: 14px; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 48px 0 40px; }
+      .hero h1 { font-size: 34px; }
+      nav a { margin: 0 20px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="site-header">
+      <a class="logo" href="#top">your-name<span>/</span>design</a>
+      <nav>
+        <a href="#top">Home</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="mailto:you@example.com">Email me</a>
+      </nav>
+    </header>
+
+    <main id="top">
+
+      <section class="hero">
+        <h1>Designing <em>clear</em> and <em>useful</em> digital products for real users</h1>
+        <p>Currently, <strong>UX Designer</strong> open to new opportunities</p>
+      </section>
+
+      <div class="links">
+        <a href="https://www.linkedin.com/">LinkedIn</a>
+        <a href="mailto:you@example.com">Email</a>
+      </div>
+
+      <section id="work">
+        <div class="grid">
+          <a class="card" href="case-study-checkout.html">
+            <div class="thumb">Add a project image</div>
+            <h2>Redesigning checkout for a food delivery app</h2>
+            <p>Cut checkout abandonment from 38% to 24%.</p>
+          </a>
+          <a class="card" href="#">
+            <div class="thumb">Add a project image</div>
+            <h2>A booking flow for a community health clinic</h2>
+            <p>Reduced phone bookings by a third.</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="about" class="text-section">
+        <h2>About</h2>
+        <p>Write two or three short paragraphs here: how you got into UX, how you work, and what kind of team you want to join.</p>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Your Name</p>
+    </footer>
+
+  </div>
+</body>
+</html>
