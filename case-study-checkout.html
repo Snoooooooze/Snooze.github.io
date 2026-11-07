@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redesigning checkout – Your Name</title>
+  <style>
+    :root { --paper:#f2f5f8; --ink:#1b2430; --muted:#55606e; --accent:#2748e8; --mark:#ffe066; --line:#cfd7e0; }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper:#131a23; --ink:#e9eef4; --muted:#a3aebb; --accent:#8fa6ff; --line:#2b3644; }
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:1.0625rem/1.6 system-ui,sans-serif; }
+    a { color:var(--accent); }
+    a:focus-visible { outline:3px solid var(--mark); outline-offset:3px; }
+    header, main, footer { max-width:44rem; margin:0 auto; padding:0 1.25rem; }
+    header { padding-top:1.5rem; padding-bottom:1.5rem; }
+    header a { color:var(--ink); font-weight:700; text-decoration:none; }
+    h1, h2 { font-family:Georgia,serif; line-height:1.2; }
+    h1 { font-size:clamp(2rem,6vw,3rem); margin:2rem 0 1rem; background:linear-gradient(transparent 62%,var(--mark) 62%); display:inline; }
+    h2 { font-size:1.5rem; margin:0 0 1rem; }
+    .lead { color:var(--muted); margin:1.5rem 0 2rem; }
+    section { padding:2rem 0; border-top:1px solid var(--line); }
+    dl { display:grid; grid-template-columns:6rem 1fr; gap:.35rem 1rem; margin:0 0 2rem; }
+    dt { color:var(--muted); font-weight:600; }
+    dd { margin:0; }
+    blockquote { margin:1.5rem 0; padding-left:1rem; border-left:4px solid var(--mark); }
+    blockquote footer { padding:0; margin-top:.25rem; color:var(--muted); font-size:.9rem; }
+    .figure { background:var(--line); border-radius:.5rem; padding:3rem 1rem; text-align:center; color:var(--muted); margin:1.5rem 0; }
+    .results { display:grid; grid-template-columns:repeat(auto-fit,minmax(10rem,1fr)); gap:1rem; margin:1.5rem 0; }
+    .results div { border:1px solid var(--line); border-radius:.5rem; padding:1rem; }
+    .results strong { display:block; font:700 1.75rem Georgia,serif; }
+    @media (max-width:30rem) { dl { grid-template-columns:1fr; gap:0; } dd { margin-bottom:.6rem; } }
+    .page-footer { padding-top:2rem; padding-bottom:3rem; color:var(--muted); font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <header><a href="index.html">&larr; Back to all work</a></header>
+
+  <main>
+    <h1>Redesigning checkout for a food delivery app</h1>
+    <p class="lead">How I helped a delivery startup recover customers who were giving up at the final step of their order.</p>
+
+    <dl>
+      <dt>Role</dt><dd>Lead designer</dd>
+      <dt>Team</dt><dd>1 product manager, 2 engineers, 1 researcher</dd>
+      <dt>Timeline</dt><dd>8 weeks</dd>
+      <dt>Tools</dt><dd>Figma, Maze, Google Analytics</dd>
+    </dl>
+
+    <section>
+      <h2>The problem</h2>
+      <p>Analytics showed that 38% of people who reached the payment step left without ordering. The team assumed prices were the cause, but nobody had asked customers directly. My goal was to find the real reason and fix it.</p>
+    </section>
+
+    <section>
+      <h2>Research</h2>
+      <p>I ran 8 moderated usability sessions and reviewed 120 support tickets about failed orders. Three problems came up repeatedly:</p>
+      <ul>
+        <li>Delivery fees only appeared on the last screen, which felt like a surprise charge.</li>
+        <li>Saved cards often failed silently, with no explanation.</li>
+        <li>The promo code field sent people hunting for codes in other tabs, and many never came back.</li>
+      </ul>
+      <blockquote>
+        <p>"I was ready to pay, and then there was a fee I hadn't seen. I just closed the app."</p>
+        <footer>Participant 4, usability session</footer>
+      </blockquote>
+    </section>
+
+    <section>
+      <h2>Design decisions</h2>
+      <p><strong>Show the full cost early.</strong> I moved the delivery fee and estimated total into the cart, so nothing changes at checkout.</p>
+      <p><strong>Make payment errors specific.</strong> Instead of "Payment failed," the new message says what went wrong and offers a button to try another card.</p>
+      <p><strong>Collapse the promo field.</strong> It now sits behind a "Have a code?" link, so it no longer invites people to leave.</p>
+      <div class="figure" role="img" aria-label="Placeholder for before and after checkout screens">
+        Add a before-and-after image of your screens here
+      </div>
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <p>After two rounds of usability testing and a 4-week live test:</p>
+      <div class="results">
+        <div><strong>38% to 24%</strong>checkout abandonment</div>
+        <div><strong>-45%</strong>payment-related support tickets</div>
+        <div><strong>+9%</strong>completed orders</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What I learned</h2>
+      <p>The team's first guess (pricing) was wrong. Talking to customers early saved us from discounting something that wasn't the problem. Next time I would bring engineers to the research sessions so they hear the feedback firsthand.</p>
+    </section>
+  </main>
+
+  <footer class="page-footer"><p>&copy; 2026 Your Name</p></footer>
+</body>
+</html>
