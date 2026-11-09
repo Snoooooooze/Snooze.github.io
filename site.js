@@ -45,6 +45,47 @@
     els.forEach(function (el) { el.classList.add('in'); });
   }
 
+  window.revealObserve = function (nodes) {
+    [].forEach.call(nodes, function (el) { if (io) io.observe(el); else el.classList.add('in'); });
+  };
+
+  // Projects without a case study file show a toast instead of opening an empty page
+  var postLinks = [].slice.call(document.querySelectorAll('.post-link[data-slug]'));
+  if (postLinks.length) {
+    var toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="toast-msg"></span>';
+    document.body.appendChild(toast);
+    var msg = toast.querySelector('.toast-msg'), toastTimer;
+    var showToast = function () {
+      msg.textContent = '';
+      clearTimeout(toastTimer);
+      toast.classList.add('show');
+      setTimeout(function () { msg.textContent = 'This content is restricted currently.'; }, 60);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3600);
+    };
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toast.classList.remove('show'); });
+
+    var known = {};
+    var exists = function (slug) {
+      if (slug in known) return Promise.resolve(known[slug]);
+      return fetch('content/' + slug + '.md', { method: 'HEAD', cache: 'no-cache' })
+        .then(function (r) { known[slug] = r.ok; return r.ok; })
+        .catch(function () { return true; }); // can't tell (for example offline): just open it
+    };
+    postLinks.forEach(function (a) {
+      var slug = a.getAttribute('data-slug');
+      exists(slug); // warm the cache so clicks feel instant
+      a.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault();
+        exists(slug).then(function (ok) { if (ok) { window.location.href = a.href; } else { showToast(); } });
+      });
+    });
+  }
+
   // Category filters: fade projects out/in, then hide/show them
   var filters = document.querySelector('.filters');
   if (filters) {

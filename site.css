@@ -169,3 +169,41 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 /* Filters wrap on larger screens, scroll sideways on phones */
 .filters { flex-wrap: wrap; overflow-x: visible; margin: 0 0 44px; padding: 0; }
 @media (max-width: 560px) { .filters { flex-wrap: nowrap; overflow-x: auto; margin: 0 -24px 44px; padding: 2px 24px; } }
+
+/* ---------- Case study (written in Markdown) ---------- */
+.cs-loading, .cs-missing { color: var(--muted); font-size: var(--fs-sm); padding: 24px 0 96px; }
+.cs-head .tags { margin: 0 0 22px; }
+.cs-head .cs-title { margin-bottom: 14px; }
+.cs-cover { margin: 0 0 8px; }
+.cs-cover .media { aspect-ratio: 16 / 10; margin-bottom: 0; }
+.cs-cover .media img { object-fit: cover; }
+.prose { counter-reset: sec; }
+.prose h2 { counter-increment: sec; font-size: var(--fs-h2); font-weight: 500; margin: 80px 0 18px; }
+.prose h2::before { content: counter(sec, decimal-leading-zero); display: block; font-size: var(--fs-sm); font-weight: 400; color: var(--muted); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.prose h3 { font-size: var(--fs-title); font-weight: 500; margin: 40px 0 10px; }
+.prose ul, .prose ol { padding-left: 1.25em; margin: 0 0 1.2em; }
+.prose li { margin-bottom: 0.45em; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 64px 0; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; }
+.prose code { font-size: 0.9em; background: var(--tint); padding: 1px 6px; border-radius: 6px; }
+.prose strong { font-weight: 500; }
+.prose blockquote.feature { margin: 40px 0; border-left: 2px solid var(--fg); padding: 2px 0 2px 22px; font-size: var(--fs-lg); line-height: 1.6; }
+.prose blockquote.feature p:last-child { margin-bottom: 0; }
+.prose figure.fig { margin: 48px 0; }
+.prose .media { aspect-ratio: auto; margin-bottom: 12px; }
+.prose .media-inner { height: auto; }
+.prose .media img { height: auto; object-fit: initial; display: block; }
+.prose .media.is-ph, .cs-head .media.is-ph { aspect-ratio: 16 / 10; }
+.prose .media.is-ph .media-inner, .cs-head .media.is-ph .media-inner { height: 100%; }
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 48px 0; }
+.gallery figure.fig { margin: 0; }
+.cs-end { margin-top: 96px; padding: 32px 0 96px; border-top: 1px solid var(--line); }
+.next-link { display: block; text-decoration: none; font-size: var(--fs-title); font-weight: 500; line-height: 1.4; }
+.next-link span { display: block; font-size: var(--fs-sm); font-weight: 400; color: var(--muted); margin-bottom: 6px; }
+@media (max-width: 560px) { .gallery { grid-template-columns: 1fr; } .prose h2 { margin-top: 64px; } }
+
+/* ---------- Toast ---------- */
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 24px); opacity: 0; pointer-events: none; z-index: 50; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 32px); padding: 12px 20px; border-radius: 999px; background: var(--fg); color: var(--bg); font-size: var(--fs-sm); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: opacity 0.4s var(--ease), transform 0.5s var(--ease); }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.toast svg { flex: none; }
+@media (prefers-reduced-motion: reduce) { .toast, .toast.show { transform: translate(-50%, 0); } }
