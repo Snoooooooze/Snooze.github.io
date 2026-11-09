@@ -48,92 +48,104 @@
 
     <h2 class="label" id="work">Projects</h2>
 
+    <!-- CATEGORY FILTERS. Each project's categories are set in its data-cats attribute
+         (service-design, automotive, consumer, government, education). Edit data-cats to change them. -->
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="service-design" aria-pressed="false">Service Design</button>
+      <button type="button" data-filter="automotive" aria-pressed="false">Automotive</button>
+      <button type="button" data-filter="consumer" aria-pressed="false">Consumer</button>
+      <button type="button" data-filter="government" aria-pressed="false">Government</button>
+      <button type="button" data-filter="education" aria-pressed="false">Education</button>
+    </div>
+
     <!-- HOW TO EDIT A PROJECT
          title / description / tags: change the text.
          link: change href="project-template.html" to that project's page.
          image: upload it to your repo, then replace <div class="ph">...</div> with
          <img src="your-image.png" alt="Describe the image">
-         To add a project, copy one whole <article class="post reveal"> ... </article> block. -->
+         To add a project, copy one whole <article class="post reveal" data-cats="automotive"> ... </article> block. -->
     <div class="feed">
 
-        <article class="post reveal">
+        <article class="post reveal" data-cats="automotive">
           <a class="post-link" href="project-template.html">
             <figure class="media"><div class="media-inner"><div class="ph">Add image: voice-search.png</div></div></figure>
             <div class="post-text">
               <div class="post-head"><span class="idx">01</span><h3 class="post-title">Designing In-vehicle Voice Search for Future Cockpit Experiences</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
               <p class="desc">Designing for vehicular interactions within the cockpit requires extreme intentionality, precision, and forethought for greater system-vehicle-user interactions.</p>
-              <ul class="tags"><li>Automotive UX</li><li>UX Research</li><li>Mass Market</li></ul>
+              <ul class="tags"><li class="cat c-automotive">Automotive</li><li>Automotive UX</li><li>UX Research</li><li>Mass Market</li></ul>
             </div>
           </a>
         </article>
 
-        <article class="post reveal">
+        <article class="post reveal" data-cats="automotive,consumer">
           <a class="post-link" href="project-template.html">
             <figure class="media"><div class="media-inner"><div class="ph">Add image: radio.png</div></div></figure>
             <div class="post-text">
               <div class="post-head"><span class="idx">02</span><h3 class="post-title">Designing the Next Generation of Radio for North America</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
               <p class="desc">Add a one or two sentence summary of this project here.</p>
-              <ul class="tags"><li>Automotive UX</li><li>Interaction Design</li><li>UX Design</li><li>Mass Market</li></ul>
+              <ul class="tags"><li class="cat c-automotive">Automotive</li><li class="cat c-consumer">Consumer</li><li>Automotive UX</li><li>Interaction Design</li><li>UX Design</li><li>Mass Market</li></ul>
             </div>
           </a>
         </article>
 
-        <article class="post reveal">
+        <article class="post reveal" data-cats="consumer,education">
           <a class="post-link" href="project-template.html">
             <figure class="media"><div class="media-inner"><div class="ph">Add image: better-bonds.png</div></div></figure>
             <div class="post-text">
               <div class="post-head"><span class="idx">03</span><h3 class="post-title">Designing Better Bonds Methods for Parent-Child Relationships</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
               <p class="desc">Add a one or two sentence summary of this project here.</p>
-              <ul class="tags"><li>Product Design</li><li>Interaction Design</li><li>UX Research</li><li>Younger Generations</li></ul>
+              <ul class="tags"><li class="cat c-consumer">Consumer</li><li class="cat c-education">Education</li><li>Product Design</li><li>Interaction Design</li><li>UX Research</li><li>Younger Generations</li></ul>
             </div>
           </a>
         </article>
 
-        <article class="post reveal">
+        <article class="post reveal" data-cats="automotive">
           <a class="post-link" href="project-template.html">
             <figure class="media"><div class="media-inner"><div class="ph">Add image: future-vehicle.png</div></div></figure>
             <div class="post-text">
               <div class="post-head"><span class="idx">04</span><h3 class="post-title">Researching Future Vehicle Experiences for North America</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
               <p class="desc">Add a one or two sentence summary of this project here.</p>
-              <ul class="tags"><li>Automotive UX</li><li>UX Research</li><li>Mass Market</li></ul>
+              <ul class="tags"><li class="cat c-automotive">Automotive</li><li>Automotive UX</li><li>UX Research</li><li>Mass Market</li></ul>
             </div>
           </a>
         </article>
 
-        <article class="post reveal">
+        <article class="post reveal" data-cats="consumer">
           <a class="post-link" href="project-template.html">
             <figure class="media"><div class="media-inner"><div class="ph">Add image: cnc-furniture.png</div></div></figure>
             <div class="post-text">
               <div class="post-head"><span class="idx">05</span><h3 class="post-title">Designing CNC Manufacturable Furniture</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
               <p class="desc">Add a one or two sentence summary of this project here.</p>
-              <ul class="tags"><li>Furniture Design</li><li>Human Factors</li><li>Product Design</li></ul>
+              <ul class="tags"><li class="cat c-consumer">Consumer</li><li>Furniture Design</li><li>Human Factors</li><li>Product Design</li></ul>
             </div>
           </a>
         </article>
 
-        <article class="post reveal">
+        <article class="post reveal" data-cats="service-design,education">
           <a class="post-link" href="project-template.html">
             <figure class="media"><div class="media-inner"><div class="ph">Add image: grassroots.png</div></div></figure>
             <div class="post-text">
               <div class="post-head"><span class="idx">06</span><h3 class="post-title">Grassroots Design for Aiding Community Support Digitally</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
               <p class="desc">Provide a sense of community support and empower Purdue students through relaxed engagement instead of the current costly, inconsistent, and unreliable resources.</p>
-              <ul class="tags"><li>Service Design</li><li>UX Research</li><li>Local Communities</li></ul>
+              <ul class="tags"><li class="cat c-service-design">Service Design</li><li class="cat c-education">Education</li><li>Service Design</li><li>UX Research</li><li>Local Communities</li></ul>
             </div>
           </a>
         </article>
 
-        <article class="post reveal">
+        <article class="post reveal" data-cats="automotive">
           <a class="post-link" href="project-template.html">
             <figure class="media"><div class="media-inner"><div class="ph">Add image: charmful.png</div></div></figure>
             <div class="post-text">
               <div class="post-head"><span class="idx">07</span><h3 class="post-title">Charmful Automotive Experiences in an Autonomous World</h3><span class="arrow" aria-hidden="true">&#8599;</span></div>
               <p class="desc">Add a one or two sentence summary of this project here.</p>
-              <ul class="tags"><li>Automotive UX</li><li>UX Research</li><li>Rapid Prototyping</li></ul>
+              <ul class="tags"><li class="cat c-automotive">Automotive</li><li>Automotive UX</li><li>UX Research</li><li>Rapid Prototyping</li></ul>
             </div>
           </a>
         </article>
 
     </div>
+    <p class="empty" hidden>No projects in this category yet.</p>
   </main>
 
   <footer class="site-footer">

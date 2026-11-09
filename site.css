@@ -128,3 +128,44 @@ figcaption { font-size: var(--fs-sm); color: var(--muted); }
 
 @media (max-width: 560px) { .feed { gap: 80px; } .facts { grid-template-columns: 1fr; } .nav { gap: 16px; } }
 #work, #contact, #about { scroll-margin-top: 80px; }
+
+/* ---------- Category filters ---------- */
+.filters { display: flex; gap: 8px; overflow-x: auto; margin: 0 -24px 44px; padding: 2px 24px; scrollbar-width: none; }
+.filters::-webkit-scrollbar { display: none; }
+.filters button { font: inherit; font-size: var(--fs-sm); border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 4px 14px; cursor: pointer; white-space: nowrap; transition: background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease); }
+.filters button:hover { color: var(--fg); border-color: var(--muted); }
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.post { transition: opacity 0.32s ease, transform 0.32s var(--ease); }
+.post.is-out { opacity: 0; transform: translateY(10px); }
+.empty { color: var(--muted); font-size: var(--fs-sm); margin: 0 0 96px; }
+
+/* ---------- Category colors ----------
+   Each category has its own color. To use ONE accent color for every category instead,
+   set all five values below to the same color. */
+:root {
+  --c-service-design: #ff7ab8;
+  --c-automotive: #ffd43b;
+  --c-consumer: #4ade80;
+  --c-government: #5eb6ff;
+  --c-education: #b79cff;
+}
+.tags li.cat { border-color: transparent; color: #0a0a0a; font-weight: 500; }
+.c-service-design { background: var(--c-service-design); }
+.c-automotive { background: var(--c-automotive); }
+.c-consumer { background: var(--c-consumer); }
+.c-government { background: var(--c-government); }
+.c-education { background: var(--c-education); }
+
+/* Filter chips: a color dot, and the chip fills with its color when selected */
+.filters button[data-filter]:not([data-filter="all"])::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; background: var(--dot); transition: background-color 0.3s var(--ease); }
+.filters button[data-filter="service-design"] { --dot: var(--c-service-design); }
+.filters button[data-filter="automotive"] { --dot: var(--c-automotive); }
+.filters button[data-filter="consumer"] { --dot: var(--c-consumer); }
+.filters button[data-filter="government"] { --dot: var(--c-government); }
+.filters button[data-filter="education"] { --dot: var(--c-education); }
+.filters button[data-filter]:not([data-filter="all"])[aria-pressed="true"] { background: var(--dot); border-color: transparent; color: #0a0a0a; }
+.filters button[data-filter]:not([data-filter="all"])[aria-pressed="true"]::before { background: #0a0a0a; }
+
+/* Filters wrap on larger screens, scroll sideways on phones */
+.filters { flex-wrap: wrap; overflow-x: visible; margin: 0 0 44px; padding: 0; }
+@media (max-width: 560px) { .filters { flex-wrap: nowrap; overflow-x: auto; margin: 0 -24px 44px; padding: 2px 24px; } }

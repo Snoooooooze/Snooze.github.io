@@ -44,4 +44,35 @@
   } else {
     els.forEach(function (el) { el.classList.add('in'); });
   }
+
+  // Category filters: fade projects out/in, then hide/show them
+  var filters = document.querySelector('.filters');
+  if (filters) {
+    var posts = [].slice.call(document.querySelectorAll('.feed .post'));
+    var empty = document.querySelector('.empty');
+    var buttons = [].slice.call(filters.querySelectorAll('button'));
+    var setPost = function (p, show) {
+      clearTimeout(p._t);
+      if (show) {
+        p.hidden = false;
+        requestAnimationFrame(function () { requestAnimationFrame(function () { p.classList.remove('is-out'); }); });
+      } else {
+        p.classList.add('is-out');
+        p._t = setTimeout(function () { p.hidden = true; }, 320);
+      }
+    };
+    filters.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var f = btn.getAttribute('data-filter');
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      var shown = 0;
+      posts.forEach(function (p) {
+        var match = f === 'all' || (p.getAttribute('data-cats') || '').split(',').indexOf(f) > -1;
+        if (match) shown++;
+        setPost(p, match);
+      });
+      empty.hidden = shown > 0;
+    });
+  }
 })();
