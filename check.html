@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Site check</title>
+  <style>
+    body { margin: 0; padding: 32px 20px 64px; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Arial, sans-serif; color: #111; background: #fff; }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 24px; margin: 0 0 4px; }
+    p.sub { color: #555; margin: 0 0 28px; }
+    h2 { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: #555; margin: 32px 0 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+    .ok { color: #0a7a3d; font-weight: 600; }
+    .bad { color: #b00020; font-weight: 600; }
+    .warn { color: #8a5a00; font-weight: 600; }
+    code { background: #f1f1f1; padding: 1px 6px; border-radius: 6px; font-size: 14px; }
+    .box { margin-top: 28px; padding: 14px 16px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Site check</h1>
+  <p class="sub">This page tests which files your live site can find. Open it on your site, then send me a screenshot.</p>
+
+  <h2>Scripts</h2>
+  <table id="scripts"><thead><tr><th>File</th><th>Result</th><th>What it means</th></tr></thead><tbody></tbody></table>
+
+  <h2>Case study files (content folder)</h2>
+  <table id="content"><thead><tr><th>Project</th><th>.txt file</th><th>.md file</th><th>What it means</th></tr></thead><tbody></tbody></table>
+
+  <div class="box" id="summary">Checking&hellip;</div>
+  <p class="sub" style="margin-top:20px">Address checked: <code id="where"></code></p>
+</main>
+
+<script>
+(function () {
+  var slugs = ['voice-search', 'radio', 'better-bonds', 'future-vehicle', 'cnc-furniture', 'grassroots', 'charmful'];
+  var base = location.href.replace(/[^\/]*$/, '');
+  document.getElementById('where').textContent = base;
+
+  function get(path) {
+    return fetch(base + path + '?nocache=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.text().then(function (t) { return { status: r.status, ok: r.ok, text: t }; }); })
+      .catch(function () { return { status: 'error', ok: false, text: '' }; });
+  }
+  function cell(res) {
+    if (res.ok) return '<span class="ok">found (' + res.status + ')</span>';
+    return '<span class="bad">not found (' + res.status + ')</span>';
+  }
+  function row(tbodyId, cells) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = cells.map(function (c) { return '<td>' + c + '</td>'; }).join('');
+    document.querySelector('#' + tbodyId + ' tbody').appendChild(tr);
+  }
+
+  var problems = [];
+  var scriptJobs = ['site.js', 'case-study.js', 'index.html', 'case-study.html'].map(function (f) {
+    return get(f).then(function (r) {
+      var note = '';
+      if (!r.ok) { note = 'Missing. Upload this file to the main folder of your repo.'; problems.push(f + ' is missing'); }
+      else if (f === 'site.js') {
+        if (r.text.indexOf("'.txt'") > -1) note = 'Up to date (looks for .txt files).';
+        else { note = '<span class="warn">Old version.</span> Upload the newest site.js again.'; problems.push('site.js is an old version'); }
+      } else if (f === 'case-study.js') {
+        if (r.text.indexOf("'.txt'") > -1) note = 'Up to date (looks for .txt files).';
+        else { note = '<span class="warn">Old version.</span> Upload the newest case-study.js again.'; problems.push('case-study.js is an old version'); }
+      } else { note = 'Present.'; }
+      row('scripts', [f, cell(r), note]);
+    });
+  });
+
+  var contentJobs = slugs.map(function (s) {
+    return Promise.all([get('content/' + s + '.txt'), get('content/' + s + '.md')]).then(function (rs) {
+      var t = rs[0], m = rs[1], note;
+      if (t.ok && /^\s*(\+\+\+|---)/.test(t.text)) note = 'Good. This case study will open.';
+      else if (t.ok) { note = '<span class="warn">File found, but it should start with a +++ line.</span>'; problems.push(s + '.txt has no +++ header'); }
+      else if (m.ok) { note = '<span class="warn">Only an .md copy exists.</span> Upload the .txt version into the content folder.'; problems.push(s + ' only has .md'); }
+      else { note = 'No file. Clicking this project shows the "restricted" toast. Expected for projects without a case study.'; }
+      row('content', [s, cell(t), cell(m), note]);
+    });
+  });
+
+  Promise.all(scriptJobs.concat(contentJobs)).then(function () {
+    var box = document.getElementById('summary');
+    if (!problems.length) {
+      box.innerHTML = '<strong class="ok">No problems found.</strong> Projects with a .txt file open normally. If one still shows the toast, tell me which one.';
+    } else {
+      box.innerHTML = '<strong class="bad">Found ' + problems.length + ' problem' + (problems.length > 1 ? 's' : '') + ':</strong><ul><li>' + problems.join('</li><li>') + '</li></ul>';
+    }
+  });
+})();
+</script>
+</body>
+</html>
