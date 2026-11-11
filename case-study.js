@@ -1,4 +1,4 @@
-/* Renders a case study from a plain-text Markdown file: case-study.html?p=name  ->  content/name.md */
+/* Renders a case study from a plain-text Markdown file: case-study.html?p=name  ->  content/name.txt */
 (function () {
   var main = document.getElementById('cs');
   var slug = (new URLSearchParams(location.search).get('p') || '').replace(/[^a-z0-9_-]/gi, '');
@@ -106,7 +106,8 @@
   var inlineMd = document.getElementById('md-inline');
   if (inlineMd) { build(inlineMd.textContent); return; }
   if (!slug) { missing('No case study selected.'); return; }
-  fetch('content/' + slug + '.md', { cache: 'no-cache' })
+  fetch('content/' + slug + '.txt', { cache: 'no-cache' })
+    .then(function (r) { return r.ok ? r : fetch('content/' + slug + '.md', { cache: 'no-cache' }); })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
     .then(build)
     .catch(function () { missing('This case study isn\u2019t written yet. Check back soon.'); });

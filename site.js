@@ -71,8 +71,9 @@
     var known = {};
     var exists = function (slug) {
       if (slug in known) return Promise.resolve(known[slug]);
-      return fetch('content/' + slug + '.md', { method: 'HEAD', cache: 'no-cache' })
-        .then(function (r) { known[slug] = r.ok; return r.ok; })
+      return fetch('content/' + slug + '.txt', { method: 'HEAD', cache: 'no-cache' })
+        .then(function (r) { return r.ok ? true : fetch('content/' + slug + '.md', { method: 'HEAD', cache: 'no-cache' }).then(function (r2) { return r2.ok; }); })
+        .then(function (ok) { known[slug] = ok; return ok; })
         .catch(function () { return true; }); // can't tell (for example offline): just open it
     };
     postLinks.forEach(function (a) {
