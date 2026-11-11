@@ -1,4 +1,4 @@
----
++++
 title: Grassroots Design for Aiding Community Support Digitally
 summary: Providing a sense of community support and empowering Purdue students through relaxed engagement, instead of the current costly, inconsistent, and unreliable resources.
 categories: Service Design, Education
@@ -7,7 +7,7 @@ role: UX Designer
 timeline: September 2021 – October 2021
 team: Alex Lederman, Sadie Bunting, Richie Arkanoff, Alex Schrankel, Sophie Regele
 cover: grassroots.png
----
++++
 
 ## Overview
 

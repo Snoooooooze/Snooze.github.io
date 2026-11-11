@@ -1,4 +1,4 @@
----
++++
 title: Designing the Next Generation of In-Vehicle Radio
 summary: Leading the UX design of Hyundai Motor Group's next-generation radio for North America, a modular system that has to work across many vehicle form factors.
 categories: Automotive, Consumer
@@ -9,7 +9,7 @@ release: 2026
 cover: radio.png
 cover-caption: Radio HMI
 notice: This project is still underway and is not currently public. Here are some general renders of the greater systems the radio will be a part of.
----
++++
 
 ## Project background
 

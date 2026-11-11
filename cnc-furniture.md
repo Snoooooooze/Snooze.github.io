@@ -1,4 +1,4 @@
----
++++
 title: Designing CNC Manufacturable Furniture
 summary: A semester-long furniture design course where the only limit was your capabilities, constrained within the four pillars of furniture design.
 categories: Consumer
@@ -6,7 +6,7 @@ tags: Furniture Design, Human Factors, Product Design, CNC Manufacturing, 3D Mod
 role: Product Designer
 timeline: August 2022 – December 2022
 cover: cnc-furniture.png
----
++++
 
 ## Design opportunity
 

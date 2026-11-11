@@ -1,4 +1,4 @@
----
++++
 title: Charmful Automotive Experiences in an Autonomous World
 summary: Designing charming features for semi-autonomous vehicles, in collaboration with the BNUX design team at Beijing Normal University.
 categories: Automotive
@@ -7,7 +7,7 @@ role: Interaction Designer
 timeline: August 2021 – December 2021
 team: Jacqueline Marks, Rebecca Hutzel, Daniel Chin, Sadie Bunting, Samruddhi Kokate, Alanna Xu, Ethan Bartucca, Janna Johns, Andrew Johnson
 cover: charmful.png
----
++++
 
 ## Overview
 

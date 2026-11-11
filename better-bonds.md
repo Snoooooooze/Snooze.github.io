@@ -1,4 +1,4 @@
----
++++
 title: Designing Better Bonds Methods for Parent-Child Relationships
 summary: A play-based piece of furniture with an accompanying instruction booklet that helps parents and children bond through building together, without screens.
 categories: Consumer, Education
@@ -7,7 +7,7 @@ role: Interaction Designer
 timeline: December 2022 – May 2023
 cover: better-bonds-cover.png
 cover-caption: The Snail, the furniture piece and booklet designed for this project
----
++++
 
 ## Overview
 

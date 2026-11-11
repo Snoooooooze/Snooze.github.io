@@ -24,9 +24,9 @@
   }
   function parseFront(text) {
     text = text.replace(/\r\n?/g, '\n').replace(/^\s+/, '');
-    var m = text.match(/^---\s*\n([\s\S]*?)\n---\s*(\n|$)/), meta = {};
+    var m = text.match(/^(---|\+\+\+)[ \t]*\n([\s\S]*?)\n\1[ \t]*(\n|$)/), meta = {};
     if (m) {
-      m[1].split('\n').forEach(function (l) { var i = l.indexOf(':'); if (i > 0) meta[l.slice(0, i).trim().toLowerCase()] = l.slice(i + 1).trim(); });
+      m[2].split('\n').forEach(function (l) { var i = l.indexOf(':'); if (i > 0) meta[l.slice(0, i).trim().toLowerCase()] = l.slice(i + 1).trim(); });
       text = text.slice(m[0].length);
     }
     return { meta: meta, body: text };

@@ -1,4 +1,4 @@
----
++++
 title: Your project title
 summary: One or two sentences that explain the project.
 categories: Automotive
@@ -11,14 +11,14 @@ cover: your-cover-image.png
 notice:
 next:
 next-title:
----
++++
 
 <!-- HOW TO USE THIS FILE
      1. Duplicate it and name it after your project, e.g. radio.md (lowercase, no spaces).
      2. Fill in the lines at the top. Leave a line blank to hide it (notice, next, cover, etc.).
         categories can be: Service Design, Automotive, Consumer, Government, Education
         (separate several with commas).
-     3. Write below the second --- line. Notes inside a comment like this one never show on the page.
+     3. Write below the second +++ line. Notes inside a comment like this one never show on the page.
 
      WRITING CHEAT SHEET
      ## Big section heading            ### Smaller heading
