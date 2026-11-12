@@ -69,12 +69,23 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toast.classList.remove('show'); });
 
     var known = {};
+    var probe = function (url) {
+      return fetch(url, { method: 'HEAD' }).then(function (r) { return r.status; }).catch(function () { return 0; });
+    };
+    // true = file exists, false = a real 404. Anything else (server hiccup, offline) counts as "try opening it".
     var exists = function (slug) {
       if (slug in known) return Promise.resolve(known[slug]);
-      return fetch('content/' + slug + '.txt', { method: 'HEAD', cache: 'no-cache' })
-        .then(function (r) { return r.ok ? true : fetch('content/' + slug + '.md', { method: 'HEAD', cache: 'no-cache' }).then(function (r2) { return r2.ok; }); })
-        .then(function (ok) { known[slug] = ok; return ok; })
-        .catch(function () { return true; }); // can't tell (for example offline): just open it
+      return probe('content/' + slug + '.txt').then(function (s1) {
+        if (s1 >= 200 && s1 < 300) return true;
+        if (s1 !== 404) return null;
+        return probe('content/' + slug + '.md').then(function (s2) {
+          if (s2 >= 200 && s2 < 300) return true;
+          return s2 === 404 ? false : null;
+        });
+      }).then(function (v) {
+        if (v !== null) known[slug] = v;
+        return v === null ? true : v;
+      });
     };
     postLinks.forEach(function (a) {
       var slug = a.getAttribute('data-slug');

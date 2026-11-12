@@ -106,9 +106,21 @@
   var inlineMd = document.getElementById('md-inline');
   if (inlineMd) { build(inlineMd.textContent); return; }
   if (!slug) { missing('No case study selected.'); return; }
-  fetch('content/' + slug + '.txt', { cache: 'no-cache' })
-    .then(function (r) { return r.ok ? r : fetch('content/' + slug + '.md', { cache: 'no-cache' }); })
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(build)
-    .catch(function () { missing('This case study isn\u2019t written yet. Check back soon.'); });
+  function load(url, tries) {
+    return fetch(url).then(function (r) {
+      if (r.status >= 500 && tries > 1) {
+        return new Promise(function (res) { setTimeout(res, 700); }).then(function () { return load(url, tries - 1); });
+      }
+      return r;
+    });
+  }
+  var unavailable = 'This page is temporarily unavailable. Please refresh in a minute.';
+  load('content/' + slug + '.txt', 3)
+    .then(function (r) { return r.status === 404 ? load('content/' + slug + '.md', 2) : r; })
+    .then(function (r) {
+      if (r.ok) return r.text().then(build);
+      if (r.status === 404) return missing('This case study isn\u2019t written yet. Check back soon.');
+      missing(unavailable);
+    })
+    .catch(function () { missing(unavailable); });
 })();
